@@ -12,7 +12,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="video")
+@Table(name="VIDEO")
 public class Video {
     
     @Id
