@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">   
+    <modelVersion>4.0.0</modelVersion>	
+    <parent>        
+        <groupId>com.youeduapp</groupId>
+        <artifactId>YouEduApp</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    
+    <groupId>YouEduApp</groupId>
+    <artifactId>YouEduApp-Web</artifactId>
+    <packaging>war</packaging>	
+    
+    <name>YouEduApp-Web</name>
+    <description>This application is intended to be an educational, intuitive and easy to moderate, interface for youtube.com.</description>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+  
+    <dependencies>         
+        <!--YouEduApp Dependeny-->
+        <dependency>
+            <groupId>com.youeduapp</groupId>
+            <artifactId>YouEduApp-Core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.youeduapp</groupId>
+            <artifactId>YouEduApp-DAO</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.youeduapp</groupId>
+            <artifactId>YouEduApp-Serv</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>   
+        
+        <!--Javax Dependency-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        
+        <!-- JUnit testing framework -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+ 
+        <!-- Spring framework -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
+ 
+        <!-- Spring AOP dependency -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+        </dependency> 
+ 
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+		
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+		
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+		
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-oscache</artifactId>
+        </dependency>
+		
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <type>jar</type>
+        </dependency>
+		
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+        </dependency>
+		
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+        </dependency>
+		
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+		
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+        </dependency>
+        
+        <!--MySQL Dependency-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>       
+        
+        <!--JSTL Dependency-->
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>   
+    </dependencies>  
+    
+</project>

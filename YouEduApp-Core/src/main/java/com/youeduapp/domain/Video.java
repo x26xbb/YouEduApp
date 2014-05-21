@@ -4,30 +4,44 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- *@author o.villalobos.alfaro
- * 
+ * @author o.villalobos.alfaro
+ *
  */
-
 @Entity
-@Table(name="VIDEO")
+@Table(name = "VIDEO")
 public class Video {
-    
+
     @Id
-    @Column(name="ID")
+    @Column(name = "ID")
     @GeneratedValue
     private Integer id;
-    
-    @Column(name="VIDEOURL")
+
+    @Column(name = "VIDEOURL")
     private String videoURL;
-    
-    @Column(name="VIDEONAME")
+
+    @Column(name = "VIDEONAME")
     private String videoName;
-    
-    @Column(name="VIDEODESC")
+
+    @Column(name = "VIDEODESC")
     private String videoDescription;
+
+    @ManyToOne
+    @JoinColumn(name = "CATEGORYID")
+    private Category category;
+
+    public Video() {
+    }
+
+    public Video(String videoURL, String videoName, String videoDescription) {
+        this.videoURL = videoURL;
+        this.videoName = videoName;
+        this.videoDescription = videoDescription;
+    }
 
     /**
      * @return the id
@@ -84,8 +98,21 @@ public class Video {
     public void setVideoDescription(String videoDescription) {
         this.videoDescription = videoDescription;
     }
+
+    /**
+     * @return the category
+     */
+    public Category getCategory() {
+        return category;
+    }
+
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+    
     
 
-
-        
 }
