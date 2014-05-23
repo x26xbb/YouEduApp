@@ -1,0 +1,260 @@
+@charset 'UTF-8';
+body{
+    background-color: darkgrey;
+    margin: 0 auto;
+    padding: 0;
+    /*Antialiased*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;   
+}
+
+#wrapper{
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    position: relative;  
+}
+
+.main_box{
+    width: 100%;
+    height: 90%;
+    overflow: hidden;
+    position: absolute;
+    top: 10%;    
+    z-index: -9999; 
+}
+
+#video{
+
+}
+
+#welcome_box{
+
+}
+
+#header{
+    width: 100%;
+    position: absolute;
+    height: 10%;
+    min-height: 40px;
+    max-height: 40px;
+    top: 0;
+    background: black;
+    z-index: 100;
+}
+.hide{
+    display: none;
+}
+
+
+.welcome_msg{
+    font-size: 100%;
+    line-height: 1;
+    color: #f35626;
+    background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: hue 60s infinite linear;
+}
+
+
+.menu_icon_box{
+    z-index: 1000;
+    position: absolute;
+    top:10px;  
+    width: 4%;
+    min-width: 20px;
+    max-width: 25px;
+    overflow: hidden;
+    background: grey;
+    border-radius: 30%;
+    cursor: pointer;
+}
+.box_left{
+    left: 10px;
+}
+.box_right{
+    right: 10px;    
+}
+
+
+.menu_icon_image {    
+    vertical-align: middle;
+    background: no-repeat url('../images/www-hitchhiker-vflg_V4SB.webp');
+    background-size: auto;   
+    background-position: 59.9% 24.55%;
+    
+    width: 100%;
+    height: 100%; 
+}
+.menu_icon_image:hover {
+    background-position: 47.9% 65.1%;
+}   
+.menu_icon_image_opened {
+    background-position: 47.9% 65.1%;
+}  
+
+
+.menu_icon_box:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+.menu_icon{
+    position:  absolute;
+    top: 7%;
+    left: -8%;
+    bottom: 0;
+    right: 0;
+    color: white;
+}
+/*
+.menu_icon div {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.menu_icon span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    color: white
+} */
+
+/* Some stylesheet reset */
+#mainmenu {
+    width: 100%;
+    bottom: 0;
+    position: absolute;   
+}
+
+#mainmenu > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;    
+    line-height: 0.50%;
+}
+/* The container */
+#mainmenu > ul {
+    display: block;
+    position: relative;
+
+    /* Some Responsive Properties */
+    width: 30%;
+    min-width: 70px;
+    max-width: 175px;
+    /* The list elements which contain the links */
+}
+#mainmenu > ul li {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;   
+}
+/* General link styling */
+#mainmenu > ul li a {
+    /* Layout */
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 12px 20px;   
+
+    /* Typography */
+
+    font-family: Helvetica, Arial, sans-serif;
+    color: #d8d8d8;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: 0 1px 1px #000;
+    font-size: 13px;
+    font-weight: 300;
+    /* Background & effects */
+    background: #282828;
+
+    /* Truncate Text with ellipsis */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /*Rounded border*/
+    border-top-right-radius: 1.5em 3em;
+    border-bottom-right-radius:1.5em 3em;
+
+    /*Antialiased*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;   
+}
+/* The hover state of the menu/submenu links */
+#mainmenu > ul li > a:hover,
+#mainmenu > ul li:hover > a {
+    color: #ffffff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+    background: #54cdf1;
+    background: -webkit-linear-gradient(#72d4f2, #54cdf1);
+    background: -moz-linear-gradient(#72d4f2, #54cdf1);
+    background: linear-gradient(#72d4f2, #54cdf1);
+    border-color: transparent;
+    width: 82%;
+}
+/* The arrow indicating a submenu */
+#mainmenu > ul .has-sub > a::after {
+    content: '';
+    position: absolute;
+    top: 35%;
+    right: 10px;
+    width: 0px;
+    height: 0px;
+    /* Creating the arrow using borders */
+
+    border: 4px solid transparent;
+    border-left: 4px solid #d8d8d8;
+}
+/* The same arrow, but with a darker color, to create the shadow effect */
+#mainmenu > ul .has-sub > a::before {
+    content: '';
+    position: absolute;
+    top: 35%;
+    right: 10px;
+    width: 0px;
+    height: 0px;
+    /* Creating the arrow using borders */
+
+    border: 4px solid transparent;
+    border-left: 4px solid #000;
+}
+/* Changing the color of the arrow on hover */
+#mainmenu > ul li > a:hover::after,
+#mainmenu > ul li:hover > a::after {
+    border-left: 4px solid #ffffff;
+}
+#mainmenu > ul li > a:hover::before,
+#mainmenu > ul li:hover > a::before {
+    border-left: 4px solid rgba(0, 0, 0, 0.3);
+}
+/* THE SUBMENUS */
+#mainmenu > ul ul {
+    position: absolute;
+    left: 100%;
+    top: -9999px;
+    padding-left: 5px;
+    opacity: 0;
+
+    width: 100%;
+    min-width: 75px;
+    max-width: 175px;    
+
+    z-index: -100;
+}
+
+#mainmenu > ul ul ul {
+    z-index: -200;
+}
+
+/* Showing the submenu when the user is hovering the parent link */
+#mainmenu > ul li:hover > ul {
+    top: 0px;
+    opacity: 1;
+}
+
