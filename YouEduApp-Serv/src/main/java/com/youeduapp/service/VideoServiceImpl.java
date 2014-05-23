@@ -1,39 +1,56 @@
 package com.youeduapp.service;
 
+import com.youeduapp.service.interfaces.VideoService;
 import com.youeduapp.dao.VideoDAO;
 import com.youeduapp.domain.Video;
+import com.youeduapp.domain.constants.BusinessContants;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author o.villalobos.alfaro
  */
-@Service
 public class VideoServiceImpl implements VideoService {
 
     @Autowired
     private VideoDAO videoDAO;
 
-    @Transactional
     @Override
-    public void addVideo(Video video) {
-        videoDAO.addVideo(video);
+    public String addVideo(Video video) {
+        String msg = BusinessContants.SUCCESS_TRANSACTION_CODE;
+        try {
+            videoDAO.save(video);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            msg = BusinessContants.ERROR_TRANSACTION_CODE;
+        }
+        return msg;
     }
 
-    @Transactional
     @Override
     public List<Video> listVideos() {
-        return videoDAO.listVideos();
+        return videoDAO.findAll();
     }
 
-    @Transactional
     @Override
-    public void removeVideo(Integer id) {
-        videoDAO.removeVideo(id);
+    public String removeVideo(Integer id) {
+        String msg = BusinessContants.SUCCESS_TRANSACTION_CODE;
+        Video videoToDelete = null;
+        try {
+            videoToDelete = findVideoById(id);
+            videoDAO.makeTransient(videoToDelete);
+        } catch (Exception be) {
+            msg = BusinessContants.ERROR_TRANSACTION_CODE;
+            System.err.println(be.getMessage());
+        }
+        return msg;
+    }
+
+    @Override
+    public Video findVideoById(Integer videoId) {
+        return videoDAO.findById(videoId);
     }
 
 }

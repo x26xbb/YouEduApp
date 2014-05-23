@@ -103,7 +103,14 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
-        </dependency>        
+        </dependency>  
+        
+        
+        <!--Commons Dependencies-->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+        </dependency>
         
     </dependencies>  
 </project>

@@ -9,7 +9,7 @@
 
         <h2>Video Manager</h2>
 
-        <form:form method="post" action="add.html" commandName="video">
+        <form:form method="post" action="video/add" commandName="video">
 
             <table>
                 <tr>
@@ -23,6 +23,14 @@
                 <tr>
                     <td><form:label path="videoURL"><spring:message code="label.videoURL"/></form:label></td>
                     <td><form:input path="videoURL" /></td>
+                </tr>
+                <tr>
+                    <td> 
+                        <form:select path="category">
+                            <form:option value="Nothing selected" />
+                            <form:options items="${categoryList}" />
+                        </form:select>               
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -47,7 +55,7 @@
                         <td>${video.videoName}</td>
                         <td>${video.videoDescription}</td>
                         <td>${video.videoURL}</td>
-                        <td><a href="delete/${video.id}">delete</a></td>
+                        <td><a href="video/delete/${video.id}">delete</a></td>                        
                     </tr>
                 </c:forEach>
             </table>

@@ -31,7 +31,7 @@ public class Video {
     private String videoDescription;
 
     @ManyToOne
-    @JoinColumn(name = "CATEGORYID")
+    @JoinColumn(name = "CATEGORY")
     private Category category;
 
     public Video() {
@@ -112,6 +112,12 @@ public class Video {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return getVideoName();
+    }
+    
     
     
 
