@@ -27,7 +27,7 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Video> videos = new LinkedList<Video>();
 
-    @ManyToOne(cascade={CascadeType.ALL})
+    @ManyToOne //(cascade={CascadeType.ALL})
     @JoinColumn(name = "CATEGORY_PARENT")
     private Category categoryParent;
 

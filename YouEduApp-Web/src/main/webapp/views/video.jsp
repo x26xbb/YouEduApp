@@ -26,10 +26,10 @@
                 </tr>
                 <tr>
                     <td> 
-                        <form:select path="category">
-                            <form:option value="Nothing selected" />
-                            <form:options items="${categoryList}" />
-                        </form:select>               
+                         <form:select path="categoryParent">
+                            <form:option  value="${DEFAULT_CATEGORY}">Nothing Selected!</form:option>
+                            <form:options items="${categoryList}" itemValue="categoryId" itemLabel="categoryName" />
+                        </form:select>                 
                     </td>
                 </tr>
                 <tr>
