@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <td> 
-                         <form:select path="categoryParent">
+                        <form:select path="category">
                             <form:option  value="${DEFAULT_CATEGORY}">Nothing Selected!</form:option>
                             <form:options items="${categoryList}" itemValue="categoryId" itemLabel="categoryName" />
                         </form:select>                 
@@ -48,6 +48,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>URL</th>
+                    <th>Category</th>
                     <th>&nbsp;</th>
                 </tr>
                 <c:forEach items="${videoList}" var="video">
@@ -55,6 +56,7 @@
                         <td>${video.videoName}</td>
                         <td>${video.videoDescription}</td>
                         <td>${video.videoURL}</td>
+                        <td>${video.category}</td>
                         <td><a href="video/delete/${video.id}">delete</a></td>                        
                     </tr>
                 </c:forEach>

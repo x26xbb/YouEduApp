@@ -19,7 +19,7 @@
 
                 <tr>
                     <td> 
-                        <form:select path="category">
+                        <form:select path="categoryParent">
                             <form:option  value="${DEFAULT_CATEGORY}">Nothing Selected!</form:option>
                             <form:options items="${categoryList}" itemValue="categoryId" itemLabel="categoryName" />
                         </form:select>               

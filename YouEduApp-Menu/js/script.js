@@ -13,7 +13,7 @@ $(function() {
     showMenu(1.5);
 
     $('#mainmenu ul > li').hover(function() {
-        $(this).removeClass('animated bounceInDown wobble').addClass('animated rubberBand');
+        $(this).removeClass('animated bounceInDown wobble').addClass('animated rubberBand hide');
         var list = $(this).children('ul').children('li').children('a');
         list.removeClass('animated bounceInDown wobble');
         var itemsLocal = list.get().reverse();
@@ -24,7 +24,7 @@ $(function() {
             var css = 'background-color: ' + current_item.css('background-color') + ';';
             css += "-webkit-animation-delay:" + delayLocal + "s; -moz-animation-delay:" + delayLocal + "s;";
             css += "-webkit-animation-duration: 1s;-moz-animation-duration: 1s;";
-            current_item.addClass('animated bounceInDown').attr('style', css);
+            current_item.addClass('animated bounceInDown').removeClass('hide').attr('style', css);
             delayLocal += 0.15;
         }
     }, function() {

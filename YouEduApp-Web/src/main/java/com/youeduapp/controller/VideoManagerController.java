@@ -91,7 +91,13 @@ public class VideoManagerController {
      */
     @RequestMapping(value = "/video/add", method = RequestMethod.POST)
     public String addVideo(@ModelAttribute("video") Video video, RedirectAttributes redirectAttrs) {
-        redirectAttrs.addFlashAttribute(BusinessContants.PROCESS_RESULT, videoService.addVideo(video));
+        if (video != null && video.getCategory() != null) {
+            Category cat = categoryService.findCategoryById(Integer.parseInt(video.getCategory().getCategoryName()));
+            if(cat != null ){
+                video.setCategory(cat);
+                redirectAttrs.addFlashAttribute(BusinessContants.PROCESS_RESULT, videoService.addVideo(video));
+            }            
+        }
         return "redirect:/video";
     }
 
