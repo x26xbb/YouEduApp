@@ -100,5 +100,9 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     <!-- Main Controller -->
     <bean id="videoManagerController" class="com.youeduapp.controller.VideoManagerController" scope="prototype"/>
     
+    <bean id="servletHelper" class="com.youeduapp.helper.HelperBean">
+        <constructor-arg type="java.lang.String" value="servletHelper"/>
+    </bean>
+    
     
 </beans>
