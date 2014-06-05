@@ -48,6 +48,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>URL</th>
+                    <th>Date Created</th>
                     <th>Category</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -56,6 +57,7 @@
                         <td>${video.videoName}</td>
                         <td>${video.videoDescription}</td>
                         <td>${video.videoURL}</td>
+                        <td>${video.dateCreated}</td>
                         <td>${video.category}</td>
                         <td><a href="video/delete/${video.id}">delete</a></td>                        
                     </tr>

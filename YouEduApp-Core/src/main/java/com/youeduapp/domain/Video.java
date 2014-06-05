@@ -1,5 +1,7 @@
 package com.youeduapp.domain;
 
+import com.youeduapp.sorting.SortedObject;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author o.villalobos.alfaro
@@ -14,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "VIDEO")
-public class Video {
+public class Video extends SortedObject {
 
     @Id
     @Column(name = "ID")
@@ -34,7 +38,26 @@ public class Video {
     @JoinColumn(name = "CATEGORY")
     private Category category;
 
+     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "DATECREATED")
+    protected Date dateCreated;
+
+    /**
+     * @return the dateCreated
+     */
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    /**
+     * @param dateCreated the dateCreated to set
+     */
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+    
     public Video() {
+        super();
     }
 
     public Video(String videoURL, String videoName, String videoDescription) {
@@ -117,8 +140,10 @@ public class Video {
     public String toString() {
         return getVideoName();
     }
-    
-    
-    
+
+    @Override
+    public String getName() {
+        return getVideoName();
+    }
 
 }

@@ -64,6 +64,7 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
         </property>
         <property name="annotatedClasses">
             <list>
+                <value>com.youeduapp.sorting.SortedObject</value>
                 <value>com.youeduapp.domain.Video</value>
                 <value>com.youeduapp.domain.Category</value>                  
             </list>

@@ -32,7 +32,7 @@
                 </tr>
             </table>	
         </form:form>
-        
+
         <c:if test="${PROCESS_RESULT != null && PROCESS_RESULT == '003'}">
             <span style="color: red;">An error occurred while processing the transaction.</span>
         </c:if>
@@ -44,13 +44,14 @@
                 <tr>
                     <th>Name</th>
                     <th>Category Parent</th>
+                    <th>Date Created</th>
                     <th>&nbsp;</th>
                 </tr>
                 <c:forEach items="${categoryList}" var="category">
                     <tr>
                         <td>${category.categoryName}</td>
                         <td>${category.categoryParent}</td>
-
+                        <td>${category.dateCreated}</td>
                         <td><a href="category/delete/${category.categoryId}">delete</a></td>                        
                     </tr>
                 </c:forEach>

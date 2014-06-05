@@ -1,8 +1,9 @@
 package com.youeduapp.domain;
 
+import com.youeduapp.sorting.SortedObject;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,10 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "CATEGORY")
-public class Category {
+public class Category extends SortedObject{
 
     @Id
     @Column(name = "CATEGORYID")
@@ -33,8 +36,27 @@ public class Category {
 
     @OneToMany(mappedBy = "categoryParent")
     private List<Category> categories = new LinkedList<Category>();
+    
+   @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "DATECREATED")
+    protected Date dateCreated;
+
+    /**
+     * @return the dateCreated
+     */
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    /**
+     * @param dateCreated the dateCreated to set
+     */
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
 
     public Category() {
+        super();
         categoryParent=null;
     }
 
@@ -111,10 +133,16 @@ public class Category {
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+   
 
     @Override
     public String toString() {
         return getCategoryName();
+    }
+
+    @Override
+    public String getName() {
+        return getCategoryName();        
     }
     
 
