@@ -46,55 +46,19 @@
                                                 <ul>
                                                     <c:forEach var="vid" items="${elem.videos}">
                                                         <li class='active'><a href='#'><span>${vid.videoName}</span></a></li>
-                                                    </c:forEach>
+                                                                </c:forEach>
                                                 </ul>
-                                        </c:if>
-                                        <c:if test="${elem.type == TYPE_VIDEO}">
+                                            </c:if>
+                                            <c:if test="${elem.type == TYPE_VIDEO}">
                                             <li class='active'><a href='#'><span>${elem.videoName}</span></a></li>
-                                        </c:if>
-                                    </c:forEach>
+                                                    </c:if>
+                                                </c:forEach>
                                 </ul>
-                        </c:if>
-                        <c:if test="${item.type == TYPE_VIDEO}">
+                            </c:if>
+                            <c:if test="${item.type == TYPE_VIDEO}">
                             <li class='active'><a href='#'><span>${item.videoName}</span></a></li>
-                        </c:if>
-                    </c:forEach>
-                    <!--
-                                        <li class='active'><a href='index.html'><span>VID 1</span></a></li>
-                                        <li class='has-sub'><a href='#'><span>CAT 1</span></a>
-                                            <ul>
-                                                <li class='has-sub'><a href='#'><span>SUB CAT 1</span></a>
-                                                    <ul>
-                                                        <li><a href='#'><span>VID 2</span></a></li>
-                                                        <li><a href='#'><span>VID 3</span></a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class='has-sub'><a href='#'><span>SUB CAT 2</span></a>
-                                                    <ul>
-                                                        <li><a href='#'><span>VID 4</span></a></li>
-                                                        <li><a href='#'><span>VID 5</span></a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href='#'><span>VID 6</span></a></li>
-                                        <li><a href='#'><span>VID 7</span></a></li>
-                                        <li class='has-sub'><a href='#'><span>CAT 2</span></a>
-                                            <ul>
-                                                <li class='has-sub'><a href='#'><span>SUB CAT 3</span></a>
-                                                    <ul>
-                                                        <li><a href='#'><span>VID 8</span></a></li>
-                                                        <li><a href='#'><span>VID 9</span></a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class='has-sub'><a href='#'><span>SUB CAT 4</span></a>
-                                                    <ul>
-                                                        <li><a href='#'><span>VID 10</span></a></li>
-                                                        <li><a href='#'><span>VID 11</span></a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li> -->
+                                    </c:if>
+                                </c:forEach>
                 </ul>
 
             </div>

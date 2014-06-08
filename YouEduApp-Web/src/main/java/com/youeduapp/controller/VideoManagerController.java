@@ -6,8 +6,6 @@ import com.youeduapp.domain.constants.BusinessContants;
 import com.youeduapp.helper.MenuHelper;
 import com.youeduapp.service.interfaces.CategoryService;
 import com.youeduapp.service.interfaces.VideoService;
-import com.youeduapp.sorting.SortedObject;
-import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
