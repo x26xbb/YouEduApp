@@ -59,7 +59,7 @@ $(function() {
 
     $('#mainmenu > ul li.has-sub').hover(function() {
         var numChilds = $(this).children('ul').children('li').size();
-        $(this).children('ul').css('top', -12 * (numChilds));
+        $(this).children('ul').css('top', -16 * (numChilds));
     }, function() {
         $(this).children('ul').css('top', -9999);
     });
