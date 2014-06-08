@@ -3,8 +3,11 @@ package com.youeduapp.controller;
 import com.youeduapp.domain.Category;
 import com.youeduapp.domain.Video;
 import com.youeduapp.domain.constants.BusinessContants;
+import com.youeduapp.helper.MenuHelper;
 import com.youeduapp.service.interfaces.CategoryService;
 import com.youeduapp.service.interfaces.VideoService;
+import com.youeduapp.sorting.SortedObject;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,20 +27,36 @@ public class VideoManagerController {
     @Autowired
     private VideoService videoService;
     @Autowired
-    private CategoryService categoryService;
-
+    private CategoryService categoryService;    
+    @Autowired
+    private MenuHelper menuHelper;
+    
     //Category Section
     /**
      *
      * @param map
      * @return
      */
-    @RequestMapping("/category")
+    @RequestMapping("/")
+    public String homePage(Map<String, Object> map) {       
+        //map.put("categoryList", categoryService.listCategories());
+        menuHelper.getMenuList(map);
+        map.put(BusinessContants.DEFAULT_CATEGORY, BusinessContants.DEFAULT_CATEGORY);
+        return "videos/home";
+    }
+    
+    //Category Section
+    /**
+     *
+     * @param map
+     * @return
+     */
+    @RequestMapping("admin/category")
     public String listCategories(Map<String, Object> map) {
         map.put("category", new Category());
         map.put("categoryList", categoryService.listCategories());
         map.put(BusinessContants.DEFAULT_CATEGORY, BusinessContants.DEFAULT_CATEGORY);
-        return "category";
+        return "admin/category";
     }
 
     /**
@@ -46,14 +65,13 @@ public class VideoManagerController {
      * @param redirectAttrs
      * @return
      */
-    @RequestMapping(value = "/category/add", method = RequestMethod.POST)
+    @RequestMapping(value = "admin/category/add", method = RequestMethod.POST)
     public String addCategory(@ModelAttribute("category") Category category, RedirectAttributes redirectAttrs) {
         // ModelAndView mav = listCategories();
         if (category != null) {
-
             redirectAttrs.addFlashAttribute(BusinessContants.PROCESS_RESULT, categoryService.addCategory(category));
         }
-        return "redirect:/category";
+        return "redirect:/admin/category";
     }
 
     /**
@@ -62,10 +80,10 @@ public class VideoManagerController {
      * @param redirectAttrs
      * @return
      */
-    @RequestMapping(value = "/category/delete/{categoryId}", method = RequestMethod.GET)
+    @RequestMapping(value = "admin/category/delete/{categoryId}", method = RequestMethod.GET)
     public String deleteCategory(@PathVariable("categoryId") Integer categoryId, RedirectAttributes redirectAttrs) {
         redirectAttrs.addFlashAttribute(BusinessContants.PROCESS_RESULT, categoryService.removeCategory(categoryId));
-        return "redirect:/category";
+        return "redirect:/admin/category";
     }
 
     //Video Section
@@ -74,13 +92,13 @@ public class VideoManagerController {
      * @param map
      * @return
      */
-    @RequestMapping("/video")
+    @RequestMapping("admin/video")
     public String listVideos(Map<String, Object> map) {
         map.put("video", new Video());
         map.put("videoList", videoService.listVideos());
         map.put("categoryList", categoryService.listCategories());
         map.put(BusinessContants.DEFAULT_CATEGORY, BusinessContants.DEFAULT_CATEGORY);
-        return "video";
+        return "admin/video";
     }
 
     /**
@@ -89,7 +107,7 @@ public class VideoManagerController {
      * @param redirectAttrs
      * @return
      */
-    @RequestMapping(value = "/video/add", method = RequestMethod.POST)
+    @RequestMapping(value = "admin/video/add", method = RequestMethod.POST)
     public String addVideo(@ModelAttribute("video") Video video, RedirectAttributes redirectAttrs) {
         if (video != null && video.getCategory() != null) {
             Category cat = categoryService.findCategoryById(Integer.parseInt(video.getCategory().getCategoryName()));
@@ -98,7 +116,7 @@ public class VideoManagerController {
                 redirectAttrs.addFlashAttribute(BusinessContants.PROCESS_RESULT, videoService.addVideo(video));
             }            
         }
-        return "redirect:/video";
+        return "redirect:/admin/video";
     }
 
     /**
@@ -107,10 +125,13 @@ public class VideoManagerController {
      * @param redirectAttrs
      * @return
      */
-    @RequestMapping(value = "/video/delete/{videoId}", method = RequestMethod.GET)
+    @RequestMapping(value = "admin/video/delete/{videoId}", method = RequestMethod.GET)
     public String deleteVideo(@PathVariable("videoId") Integer videoId, RedirectAttributes redirectAttrs) {
         redirectAttrs.addFlashAttribute(BusinessContants.PROCESS_RESULT, videoService.removeVideo(videoId));
-        return "redirect:/video";
+        return "redirect:/admin/video";
     }
+    
+    
+    
 
 }

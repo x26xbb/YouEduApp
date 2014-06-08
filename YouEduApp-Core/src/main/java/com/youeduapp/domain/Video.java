@@ -1,6 +1,7 @@
 package com.youeduapp.domain;
 
 import com.youeduapp.sorting.SortedObject;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "VIDEO")
-public class Video extends SortedObject {
+public class Video extends SortedObject implements Serializable {
 
     @Id
     @Column(name = "ID")
@@ -38,29 +39,17 @@ public class Video extends SortedObject {
     @JoinColumn(name = "CATEGORY")
     private Category category;
 
-     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATECREATED")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "DATECREATED", nullable = false)
     protected Date dateCreated;
 
-    /**
-     * @return the dateCreated
-     */
-    public Date getDateCreated() {
-        return dateCreated;
-    }
-
-    /**
-     * @param dateCreated the dateCreated to set
-     */
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-    
     public Video() {
-        super();
+        dateCreated = new Date();
+        type = TYPE.TYPE_VIDEO;
     }
 
     public Video(String videoURL, String videoName, String videoDescription) {
+        this();
         this.videoURL = videoURL;
         this.videoName = videoName;
         this.videoDescription = videoDescription;
@@ -134,6 +123,20 @@ public class Video extends SortedObject {
      */
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    /**
+     * @return the dateCreated
+     */
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    /**
+     * @param dateCreated the dateCreated to set
+     */
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     @Override
