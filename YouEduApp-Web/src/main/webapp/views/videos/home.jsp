@@ -56,9 +56,9 @@
                                 </ul>
                             </c:if>
                             <c:if test="${item.type == TYPE_VIDEO}">
-                            <li class='active'><a href='#'><span>${item.videoName}</span></a></li>
-                                    </c:if>
-                                </c:forEach>
+                                <li class='active'><a href='#'><span>${item.videoName}</span></a></li>
+                            </c:if>
+                    </c:forEach>
                 </ul>
 
             </div>

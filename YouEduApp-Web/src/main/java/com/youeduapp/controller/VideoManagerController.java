@@ -4,8 +4,10 @@ import com.youeduapp.domain.Category;
 import com.youeduapp.domain.Video;
 import com.youeduapp.domain.constants.BusinessContants;
 import com.youeduapp.helper.MenuHelper;
+import com.youeduapp.helper.YouTubeHelper;
 import com.youeduapp.service.interfaces.CategoryService;
 import com.youeduapp.service.interfaces.VideoService;
+import com.youeduapp.vo.YouTubePlayerVO;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,10 +27,12 @@ public class VideoManagerController {
     @Autowired
     private VideoService videoService;
     @Autowired
-    private CategoryService categoryService;    
+    private CategoryService categoryService;
     @Autowired
     private MenuHelper menuHelper;
-    
+    @Autowired
+    private YouTubeHelper youTubeHelper;
+
     //Category Section
     /**
      *
@@ -36,13 +40,34 @@ public class VideoManagerController {
      * @return
      */
     @RequestMapping("/")
-    public String homePage(Map<String, Object> map) {       
+    public String homePage(Map<String, Object> map) {
         //map.put("categoryList", categoryService.listCategories());
         menuHelper.getMenuList(map);
         map.put(BusinessContants.DEFAULT_CATEGORY, BusinessContants.DEFAULT_CATEGORY);
         return "videos/home";
     }
-    
+
+    /**
+     *
+     * @param map
+     * @param videoID
+     * @return
+     * @throws java.lang.Exception
+     */
+    @RequestMapping("/video/{videoID}")
+    public String videoPage(Map<String, Object> map, @PathVariable("videoID") Integer videoID)
+            throws Exception {
+        Video video = videoService.findVideoById(videoID);
+        if (video == null || video.getVideoURL() == null) {
+            throw new Exception("The ID for the video is wrong, v=" + videoID);
+        } else {
+            menuHelper.getMenuList(map);
+            map.put(BusinessContants.DEFAULT_CATEGORY, BusinessContants.DEFAULT_CATEGORY);
+            map.put("videoPath", youTubeHelper.getEmbedURL(video.getVideoURL()));
+        }
+        return "videos/video";
+    }
+
     //Category Section
     /**
      *
@@ -55,6 +80,32 @@ public class VideoManagerController {
         map.put("categoryList", categoryService.listCategories());
         map.put(BusinessContants.DEFAULT_CATEGORY, BusinessContants.DEFAULT_CATEGORY);
         return "admin/category";
+    }
+
+    /**
+     *
+     * @param map
+     * @return
+     */
+    @RequestMapping(value = "admin/player", method = RequestMethod.POST)
+    public String youTubeAdmin(Map<String, Object> map) {
+        map.put("YouTubePlayerVO", youTubeHelper.getYouTubePlayerVO());
+        return "admin/player";
+    }
+    
+    /**
+     *
+     * @param vo
+     * @param redirectAttrs
+     * @return
+     */
+    @RequestMapping(value = "admin/player/submit", method = RequestMethod.POST)
+    public String youTubeAdminSubmit(@ModelAttribute("YouTubePlayerVO") YouTubePlayerVO vo, RedirectAttributes redirectAttrs) {
+        // ModelAndView mav = listCategories();
+        if (vo != null) {
+            youTubeHelper.setYouTubePlayerVO(vo);
+        }
+        return "redirect:/admin/player";
     }
 
     /**
@@ -91,7 +142,8 @@ public class VideoManagerController {
      * @return
      */
     @RequestMapping("admin/video")
-    public String listVideos(Map<String, Object> map) {
+    public String listVideos(Map<String, Object> map
+    ) {
         map.put("video", new Video());
         map.put("videoList", videoService.listVideos());
         map.put("categoryList", categoryService.listCategories());
@@ -109,10 +161,11 @@ public class VideoManagerController {
     public String addVideo(@ModelAttribute("video") Video video, RedirectAttributes redirectAttrs) {
         if (video != null && video.getCategory() != null) {
             Category cat = categoryService.findCategoryById(Integer.parseInt(video.getCategory().getCategoryName()));
-            if(cat != null ){
+            if (cat != null) {
                 video.setCategory(cat);
+                video.setVideoURL(youTubeHelper.getYouTubeID(video.getVideoURL()));
                 redirectAttrs.addFlashAttribute(BusinessContants.PROCESS_RESULT, videoService.addVideo(video));
-            }            
+            }
         }
         return "redirect:/admin/video";
     }
@@ -128,8 +181,5 @@ public class VideoManagerController {
         redirectAttrs.addFlashAttribute(BusinessContants.PROCESS_RESULT, videoService.removeVideo(videoId));
         return "redirect:/admin/video";
     }
-    
-    
-    
 
 }

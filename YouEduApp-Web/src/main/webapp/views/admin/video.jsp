@@ -9,7 +9,7 @@
 
         <h2>Video Manager</h2>
 
-        <form:form method="post" action="video/add" commandName="video">
+        <form:form method="post" action="admin/video/add" commandName="video">
 
             <table>
                 <tr>
@@ -59,7 +59,7 @@
                         <td>${video.videoURL}</td>
                         <td>${video.dateCreated}</td>
                         <td>${video.category}</td>
-                        <td><a href="video/delete/${video.id}">delete</a></td>                        
+                        <td><a href="admin/video/delete/${video.id}">delete</a></td>                        
                     </tr>
                 </c:forEach>
             </table>

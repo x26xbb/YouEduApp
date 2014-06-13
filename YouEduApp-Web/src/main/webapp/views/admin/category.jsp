@@ -9,7 +9,7 @@
 
         <h2>Category Manager</h2>
 
-        <form:form method="post" action="category/add" commandName="category">
+        <form:form method="post" action="admin/category/add" commandName="category">
 
             <table>
                 <tr>
@@ -52,7 +52,7 @@
                         <td>${category.categoryName}</td>
                         <td>${category.categoryParent}</td>
                         <td>${category.dateCreated}</td>
-                        <td><a href="category/delete/${category.categoryId}">delete</a></td>                        
+                        <td><a href="admin/category/delete/${category.categoryId}">delete</a></td>                        
                     </tr>
                 </c:forEach>
             </table>
