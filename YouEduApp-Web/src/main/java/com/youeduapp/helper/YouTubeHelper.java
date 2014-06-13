@@ -9,7 +9,8 @@ import com.youeduapp.vo.YouTubePlayerVO;
 public class YouTubeHelper {
 
     
-    private YouTubePlayerVO youTubePlayerVO;
+    private YouTubePlayerVO youTubePlayerVO = new YouTubePlayerVO();
+    
     
     public String getYouTubeID(String url) {
         return "dsYMa44m69g";

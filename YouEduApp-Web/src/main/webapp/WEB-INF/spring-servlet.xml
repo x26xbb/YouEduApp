@@ -101,13 +101,13 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     
     
     <!-- Menu Helper -->
-    <bean id="menuHelper" class="com.youeduapp.helper.MenuHelper" scope="prototype"/>
+    <bean id="menuHelper" class="com.youeduapp.helper.MenuHelper" />
     
     <!-- YouTube Helper -->
-    <bean id="youTubeHelper" class="com.youeduapp.helper.YouTubeHelper" scope="prototype"/>
+    <bean id="youTubeHelper" class="com.youeduapp.helper.YouTubeHelper" />
     
     <!-- Main Controller -->
-    <bean id="videoManagerController" class="com.youeduapp.controller.VideoManagerController" scope="prototype"/>
+    <bean id="videoManagerController" class="com.youeduapp.controller.VideoManagerController" />
     
        
 </beans>

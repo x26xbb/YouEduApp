@@ -1,15 +1,11 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
-    <head>
-        <title><spring:message code="label.title"/></title>
-    </head>
-    <body>
+<jsp:include page="includes/header.jsp"/>
 
         <h2>Category Manager</h2>
 
-        <form:form method="post" action="admin/category/add" commandName="category">
+        <form:form method="post" action="category/add" commandName="category">
 
             <table>
                 <tr>
@@ -52,11 +48,9 @@
                         <td>${category.categoryName}</td>
                         <td>${category.categoryParent}</td>
                         <td>${category.dateCreated}</td>
-                        <td><a href="admin/category/delete/${category.categoryId}">delete</a></td>                        
+                        <td><a href="category/delete/${category.categoryId}">delete</a></td>                        
                     </tr>
                 </c:forEach>
             </table>
         </c:if>
-
-    </body>
-</html>
+<jsp:include page="includes/footer.jsp"/>

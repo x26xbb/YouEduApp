@@ -68,31 +68,45 @@ public class VideoManagerController {
         return "videos/video";
     }
 
+     /**
+     *
+     * @param map
+     * @return
+     */
+    @RequestMapping("/admin/")
+    public String adminHome(Map<String, Object> map) {  
+        //in case need to place something in the map
+        return "admin/home";
+    }
+    
     //Category Section
     /**
      *
      * @param map
      * @return
      */
-    @RequestMapping("admin/category")
+    @RequestMapping("/admin/category")
     public String listCategories(Map<String, Object> map) {
         map.put("category", new Category());
         map.put("categoryList", categoryService.listCategories());
         map.put(BusinessContants.DEFAULT_CATEGORY, BusinessContants.DEFAULT_CATEGORY);
         return "admin/category";
     }
+    
+  
 
     /**
      *
      * @param map
      * @return
      */
-    @RequestMapping(value = "admin/player", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/player", method = RequestMethod.GET)
     public String youTubeAdmin(Map<String, Object> map) {
-        map.put("YouTubePlayerVO", youTubeHelper.getYouTubePlayerVO());
+        System.out.println(youTubeHelper.getYouTubePlayerVO().isAutoPlay() + "-" + youTubeHelper.getYouTubePlayerVO().isHideControls() + "-" + youTubeHelper.getYouTubePlayerVO().isHideInfo());
+        map.put("youTubePlayerVO", youTubeHelper.getYouTubePlayerVO());
         return "admin/player";
     }
-    
+
     /**
      *
      * @param vo
@@ -103,7 +117,10 @@ public class VideoManagerController {
     public String youTubeAdminSubmit(@ModelAttribute("YouTubePlayerVO") YouTubePlayerVO vo, RedirectAttributes redirectAttrs) {
         // ModelAndView mav = listCategories();
         if (vo != null) {
-            youTubeHelper.setYouTubePlayerVO(vo);
+            System.out.println(vo.isAutoPlay() + "-" + vo.isHideControls() + "-" + vo.isHideInfo());
+            youTubeHelper.getYouTubePlayerVO().setAutoPlay(vo.isAutoPlay());
+            youTubeHelper.getYouTubePlayerVO().setHideControls(vo.isHideControls());
+            youTubeHelper.getYouTubePlayerVO().setHideInfo(vo.isHideInfo());
         }
         return "redirect:/admin/player";
     }
@@ -114,7 +131,7 @@ public class VideoManagerController {
      * @param redirectAttrs
      * @return
      */
-    @RequestMapping(value = "admin/category/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/category/add", method = RequestMethod.POST)
     public String addCategory(@ModelAttribute("category") Category category, RedirectAttributes redirectAttrs) {
         // ModelAndView mav = listCategories();
         if (category != null) {
@@ -129,7 +146,7 @@ public class VideoManagerController {
      * @param redirectAttrs
      * @return
      */
-    @RequestMapping(value = "admin/category/delete/{categoryId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/category/delete/{categoryId}", method = RequestMethod.GET)
     public String deleteCategory(@PathVariable("categoryId") Integer categoryId, RedirectAttributes redirectAttrs) {
         redirectAttrs.addFlashAttribute(BusinessContants.PROCESS_RESULT, categoryService.removeCategory(categoryId));
         return "redirect:/admin/category";
@@ -141,7 +158,7 @@ public class VideoManagerController {
      * @param map
      * @return
      */
-    @RequestMapping("admin/video")
+    @RequestMapping("/admin/video")
     public String listVideos(Map<String, Object> map
     ) {
         map.put("video", new Video());
@@ -157,7 +174,7 @@ public class VideoManagerController {
      * @param redirectAttrs
      * @return
      */
-    @RequestMapping(value = "admin/video/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/video/add", method = RequestMethod.POST)
     public String addVideo(@ModelAttribute("video") Video video, RedirectAttributes redirectAttrs) {
         if (video != null && video.getCategory() != null) {
             Category cat = categoryService.findCategoryById(Integer.parseInt(video.getCategory().getCategoryName()));
@@ -176,7 +193,7 @@ public class VideoManagerController {
      * @param redirectAttrs
      * @return
      */
-    @RequestMapping(value = "admin/video/delete/{videoId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/video/delete/{videoId}", method = RequestMethod.GET)
     public String deleteVideo(@PathVariable("videoId") Integer videoId, RedirectAttributes redirectAttrs) {
         redirectAttrs.addFlashAttribute(BusinessContants.PROCESS_RESULT, videoService.removeVideo(videoId));
         return "redirect:/admin/video";
