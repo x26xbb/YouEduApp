@@ -21,13 +21,16 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
         <!-- Style Sheets --> 
+        <link rel="stylesheet" type="text/css" media="all" href="<%=resourcesContext + "css/libs/purecss/pure-min.css"%>" />
         <link rel="stylesheet" type="text/css" media="all" href="<%=resourcesContext + "js/libs/trunk/css/reset.css"%>" />
         <link rel="stylesheet" type="text/css" media="all" href="<%=resourcesContext + "js/libs/trunk/css/trunk.css"%>" />
+        
 
         <!-- Scripts --> 
 
         <script type="text/javascript" src="<%=resourcesContext + "js/libs/trunk/js/jquery-1.9.js"%>"></script>
         <script type="text/javascript" src="<%=resourcesContext + "js/libs/trunk/js/trunk.js"%>"></script>
+        <script type="text/javascript" src="<%=resourcesContext + "js/adminScript.js"%>"></script>
     </head>
     <body>
         <div class="container">
@@ -44,7 +47,7 @@
                     <li><a href="<%= rootContext + "/admin/"%>" class="active">HOME</a></li>			
                     <li><a href="<%= rootContext + "/admin/category"%>">Categories</a></li>
                     <li><a href="<%= rootContext + "/admin/video"%>">Videos</a></li>
-                    <li><a href="<%= rootContext + "/admin/player"%>">Players</a></li>     
+                    <li><a href="<%= rootContext + "/admin/player"%>">Player</a></li>     
                     <li><a href="<%= rootContext + "/"%>">Get Back!</a></li> 
                 </ul>
             </nav>
@@ -52,6 +55,6 @@
             <div class="content slide">     <!--Add "slideRight" class to items that move right when viewing Nav Drawer  -->
                 <ul class="responsive">
                     <li class="header-section">
-                        <p class="placefiller">HEADER</p>
-                    </li>
+<!--                                            <p class="placefiller">HEADER</p>-->
+                                        </li>
                     <li class="body-section">

@@ -10,11 +10,10 @@
 
 <jsp:include page="includes/header.jsp"/>
 
-<div id="welcome_box" class="main_box">
-    
-</div>    
+<embed id="video" src="${videoPath}"/>
+
 <script type="text/javascript" >
-    YouEduAppMenu.home();
+    YouEduAppMenu.video();
 </script>
 
 <jsp:include page="includes/footer.jsp"/>

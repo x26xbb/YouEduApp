@@ -1,6 +1,8 @@
 package com.youeduapp.helper;
 
 import com.youeduapp.vo.YouTubePlayerVO;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -8,12 +10,17 @@ import com.youeduapp.vo.YouTubePlayerVO;
  */
 public class YouTubeHelper {
 
-    
     private YouTubePlayerVO youTubePlayerVO = new YouTubePlayerVO();
-    
-    
-    public String getYouTubeID(String url) {
-        return "dsYMa44m69g";
+
+    public String getYouTubeID(String url) {       
+        String pattern = "(?<=watch\\?v=|/videos/|embed\\/|.be/|&v=)[^#\\&\\?]*";// aqui se meten las exception de links
+        String id = "";
+        Pattern compiledPattern = Pattern.compile(pattern);
+        Matcher matcher = compiledPattern.matcher(url);
+        if (matcher.find()) {
+            id = matcher.group();
+        }
+        return id;
     }
 
     public String getEmbedURL(String youTubeVideoID) {
@@ -46,7 +53,6 @@ public class YouTubeHelper {
      */
     public void setYouTubePlayerVO(YouTubePlayerVO youTubePlayerVO) {
         this.youTubePlayerVO = youTubePlayerVO;
-    }   
-    
-    
+    }
+
 }

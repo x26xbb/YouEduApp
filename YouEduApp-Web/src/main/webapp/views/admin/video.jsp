@@ -3,51 +3,26 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="includes/header.jsp"/>
 
-<h2>Video Manager</h2>
 
-<form:form method="post" action="video/add" commandName="video">
+<script type="text/javascript">
+    $(function() {
+        $('.header-section').html('<h1>Video Manager</h1>');
+    });
+</script>
 
-    <table>
-        <tr>
-            <td><form:label path="videoName"><spring:message code="label.videoName"/></form:label></td>
-        <td><form:input path="videoName" /></td> 
-        </tr>
-        <tr>
-            <td><form:label path="videoDescription"><spring:message code="label.videoDescription"/></form:label></td>
-        <td><form:input path="videoDescription" /></td>
-        </tr>
-        <tr>
-            <td><form:label path="videoURL"><spring:message code="label.videoURL"/></form:label></td>
-        <td><form:input path="videoURL" /></td>
-        </tr>
-        <tr>
-            <td> 
-        <form:select path="category">
-            <form:option  value="${DEFAULT_CATEGORY}">Nothing Selected!</form:option>
-            <form:options items="${categoryList}" itemValue="categoryId" itemLabel="categoryName" />
-        </form:select>                 
-        </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="<spring:message code="label.addVideo"/>"/>
-            </td>
-        </tr>
-    </table>	
-</form:form>
-
-
-<h3>Video</h3>
+<h3>Videos</h3>
 <c:if  test="${!empty videoList}">
-    <table class="data">
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>URL</th>
-            <th>Date Created</th>
-            <th>Category</th>
-            <th>&nbsp;</th>
-        </tr>
+    <table class="data pure-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>YouTubeID</th>
+                <th>Date Created</th>
+                <th>Category</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
         <c:forEach items="${videoList}" var="video">
             <tr>
                 <td>${video.videoName}</td>
@@ -60,4 +35,26 @@
         </c:forEach>
     </table>
 </c:if>
+<br/>
+
+<form:form method="post" action="video/add" commandName="video" class="pure-form pure-form-stacked">
+    <fieldset>
+        <legend>Adding a new Video</legend>
+        <form:input path="videoName" placeholder="Video Name" />
+        <br/>
+        <form:textarea path="videoDescription" placeholder="Video Description" rows="2" cols="80%" />
+        <br/>
+        <form:textarea path="videoURL" placeholder="YouTube Video Link"  rows="2" cols="80%" />
+        <br/>
+        <form:label path="category">Category</form:label>
+        <form:select path="category" id="category">
+            <form:option  value="${DEFAULT_CATEGORY}">Nothing Selected!</form:option>
+            <form:options items="${categoryList}" itemValue="categoryId" itemLabel="categoryName" />
+        </form:select>  
+        <br/>
+        <input type="submit" value="Add Video"  class="pure-button pure-button-primary"/>
+    </fieldset>
+    	
+</form:form>
+
 <jsp:include page="includes/footer.jsp"/>

@@ -20,8 +20,8 @@
               content="width=device-width,height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
         <meta name="HandheldFriendly" content="True">
         <meta name="mobile-web-app-capable" content="yes">        
-        <link rel="stylesheet" type="text/css" href="resources/css/style.css" media="screen" />
-        <link rel="stylesheet" href="resources/css/libs/animate/animate.css" />
+        <link rel="stylesheet" type="text/css" href="<%= resourcesContext + "css/style.css"%>" media="screen" />
+        <link rel="stylesheet" href="<%= resourcesContext + "css/libs/animate/animate.css"%>" />
 
     </head>
     <body>
@@ -32,7 +32,7 @@
                     <!--                    <div class='menu_icon'><div><span>Aspect ratio 1:1</span></div></div>-->
                 </div>
                 <div class="menu_icon_box box_right"> 
-                    <div class='menu_icon menu_icon_admin'></div>
+                    <div class='menu_icon menu_icon_admin config_icon_image'></div>
                 </div>
             </div>
 
@@ -49,27 +49,27 @@
                                             <li class='has-sub'><a href='#'><span>${elem.categoryName}</span></a>
                                                 <ul>
                                                     <c:forEach var="vid" items="${elem.videos}">
-                                                        <li class='active'><a href='#'><span>${vid.videoName}</span></a></li>
+                                                        <li class='active'><a href='<%= rootContext %>/video/${vid.id}'><span>${vid.videoName}</span></a></li>
                                                                 </c:forEach>
                                                 </ul>
                                             </c:if>
                                             <c:if test="${elem.type == TYPE_VIDEO}">
-                                            <li class='active'><a href='#'><span>${elem.videoName}</span></a></li>
+                                            <li class='active'><a href='<%= rootContext %>/video/${elem.id}'><span>${elem.videoName}</span></a></li>
                                                     </c:if>
                                                 </c:forEach>
                                 </ul>
                             </c:if>
                             <c:if test="${item.type == TYPE_VIDEO}">
-                            <li class='active'><a href='#'><span>${item.videoName}</span></a></li>
+                            <li class='active'><a href='<%= rootContext %>/video/${item.id}'><span>${item.videoName}</span></a></li>
                                     </c:if>
                                 </c:forEach>
                 </ul>
 
             </div>
-            <script type="text/javascript" src="resources/js/libs/jquery/jquery-2.1.1.min.js"></script>
-            <script type="text/javascript" src="resources/js/script.js" ></script> 
-            <script type="text/javascript" src="resources/js/libs/hideaddrbar.js" ></script>
+            <script type="text/javascript" src="<%= resourcesContext + "js/libs/jquery/jquery-2.1.1.min.js"%>"></script>
+            <script type="text/javascript" src="<%= resourcesContext + "js/script.js"%>" ></script> 
+            <script type="text/javascript" src="<%= resourcesContext + "js/libs/hideaddrbar.js"%>" ></script>
             <script type="text/javascript" >
-                YouEduAppMenu.context = '<%= application.getContextPath()%>';
+                YouEduAppMenu.context = '<%= rootContext%>';
                 YouEduAppMenu.init();
             </script>

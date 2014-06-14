@@ -88,6 +88,7 @@ YouEduAppMenu.init = (function(){
 
 YouEduAppMenu.video = (function(){
      $('.menu_icon_image').removeClass('menu_icon_image_opened');
+     YouEduAppMenu.hideMenu(1);
 });
 
 

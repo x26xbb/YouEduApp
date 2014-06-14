@@ -25,7 +25,12 @@ body{
 }
 
 #video{
-
+    width: 100%;
+    height: 90%;
+    overflow: hidden;
+    position: absolute;
+    top: 10%;  
+    z-index: 0;
 }
 
 #welcome_box{
@@ -94,6 +99,24 @@ body{
 }  
 
 
+
+.config_icon_image {    
+    vertical-align: middle;
+    background: no-repeat url('../images/www-hitchhiker-vflg_V4SB.webp');
+    background-size: auto;   
+    background-position: 102.9% 24.55%;     
+    width: 100%;
+    height: 100%; 
+}
+.config_icon_image:hover {
+    background-position: 41% 37.3%;
+}   
+.config_icon_image_opened {
+    background-position: 41% 37.3%;
+}  
+
+
+
 .menu_icon_box:before{
     content: "";
     display: block;
@@ -106,6 +129,7 @@ body{
     bottom: 0;
     right: 0;
     color: white;
+    /* background-color: red; */
 }
 /*
 .menu_icon div {
@@ -125,6 +149,7 @@ body{
     width: 100%;
     bottom: 0;
     position: absolute;   
+    z-index: 1;
 }
 
 #mainmenu > ul {
